@@ -16,6 +16,29 @@ app.MapGet("/api/buildings/{id}", async (BuildingsService buildingService, strin
         return building is null ? Results.NotFound() : Results.Ok(building);
     });
 
+app.MapGet("/api/buildings/{id}/height", async (BuildingsService buildingService, string id) =>
+{
+    var building = await buildingService.Get(id);
+    return building is null ? Results.NotFound() : Results.Ok(building.Height);
+});
+
+app.MapGet("/api/buildings/{id}/surface", async (BuildingsService buildingService, string id) =>
+{
+    var building = await buildingService.Get(id);
+    return building is null ? Results.NotFound() : Results.Ok(building.Surface);
+});
+
+app.MapGet("/api/buildings/{id}/floor/{number}", async (BuildingsService buildingService, string id, int number) =>
+{
+    var building = await buildingService.Get(id);
+    if(building is null) return Results.NotFound();
+    foreach(var floor in building.Floors)
+    {
+        if (floor.Number == number) return Results.Ok(floor);
+    }
+    return Results.NotFound();
+});
+
 app.MapPost("/api/buildings", async (BuildingsService buildingService, Building building) =>
     {
         await buildingService.Create(building);

@@ -10,8 +10,9 @@ namespace BuildingAPI.Data
         public string Address { get; set; }
         public List<String> Owners { get; set; }
         public string Summary { get; set; }
-        public float Surface { get; set; }
-        public float Height { get; set; }
+        public Nullable<float> Surface { get; set; }
+        public Nullable<float> Height { get; set; }
+        public List<Floor> Floors { get; set; }
 
     }
 }

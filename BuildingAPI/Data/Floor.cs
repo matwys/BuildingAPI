@@ -15,7 +15,12 @@ namespace BuildingAPI.Data
         */
         public float calculateHeight()
         {
-            return HeightOfCeiling + Rooms.Max(item => item.Height);
+            return HeightOfCeiling + Rooms.Max(item => item.calculateHeight());
+        }
+
+        public float calculateSurface()
+        {
+            return Rooms.Sum(item => item.calculateSurface());
         }
     }
 }

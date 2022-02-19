@@ -10,7 +10,6 @@ namespace BuildingAPI.Data
         public string Address { get; set; }
         public List<String> Owners { get; set; }
         public string Summary { get; set; }
-        public float Surface { get; set; }
         public float AboveSurface { get; set; }
         public List<Floor> Floors { get; set; }
 
@@ -22,6 +21,11 @@ namespace BuildingAPI.Data
         public float calculateHeight()
         {
             return AboveSurface + Floors.Sum(item => item.calculateHeight());
+        }
+
+        public float calculateSurface()
+        {
+            return Floors.Sum(item => item.calculateSurface());
         }
     }
 }

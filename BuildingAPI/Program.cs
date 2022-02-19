@@ -44,7 +44,7 @@ app.MapGet("/api/buildings/{id}/floor/{number}/room/{roomNumber}/height", async 
         {
             foreach (var room in floor.Rooms)
             {
-                if (room.Number == roomNumber) return Results.Ok(room.Height);
+                if (room.Number == roomNumber) return Results.Ok(room.calculateHeight());
             }
             return Results.NotFound();
         }
@@ -55,7 +55,36 @@ app.MapGet("/api/buildings/{id}/floor/{number}/room/{roomNumber}/height", async 
 app.MapGet("/api/buildings/{id}/surface", async (BuildingsService buildingService, string id) =>
 {
     var building = await buildingService.Get(id);
-    return building is null ? Results.NotFound() : Results.Ok(building.Surface);
+    return building is null ? Results.NotFound() : Results.Ok(building.calculateSurface());
+});
+
+app.MapGet("/api/buildings/{id}/floor/{number}/surface", async (BuildingsService buildingService, string id, int number) =>
+{
+    var building = await buildingService.Get(id);
+    if (building is null) return Results.NotFound();
+    foreach (var floor in building.Floors)
+    {
+        if (floor.Number == number) return Results.Ok(floor.calculateSurface());
+    }
+    return Results.NotFound();
+});
+
+app.MapGet("/api/buildings/{id}/floor/{number}/room/{roomNumber}/surface", async (BuildingsService buildingService, string id, int number, int roomNumber) =>
+{
+    var building = await buildingService.Get(id);
+    if (building is null) return Results.NotFound();
+    foreach (var floor in building.Floors)
+    {
+        if (floor.Number == number)
+        {
+            foreach (var room in floor.Rooms)
+            {
+                if (room.Number == roomNumber) return Results.Ok(room.calculateSurface());
+            }
+            return Results.NotFound();
+        }
+    }
+    return Results.NotFound();
 });
 
 app.MapGet("/api/buildings/{id}/floor/{number}", async (BuildingsService buildingService, string id, int number) =>

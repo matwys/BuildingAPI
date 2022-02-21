@@ -3,15 +3,15 @@
     public class Room
     {
         public int Number { get; set; }
-        public float Height { get; set; }
-        public float Surface { get; set; }
+        public decimal Height { get; set; }
+        public decimal Surface { get; set; }
 
-        public float calculateHeight()
+        public decimal calculateHeight()
         {
             return Height;
         }
 
-        public float calculateSurface()
+        public decimal calculateSurface()
         {
             return Surface;
         }

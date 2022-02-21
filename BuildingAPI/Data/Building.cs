@@ -10,20 +10,20 @@ namespace BuildingAPI.Data
         public string Address { get; set; }
         public List<String> Owners { get; set; }
         public string Summary { get; set; }
-        public float AboveSurface { get; set; }
-        public List<Floor> Floors { get; set; }
+        public decimal AboveSurface { get; set; }
+        public List<Floor> Floors { get; set; } = new List<Floor>();
 
         /**
         * method responsible for calculating Height of Building
         *
         * @return float value of sum of all height of the floors + AboveSurface
         */
-        public float calculateHeight()
+        public decimal calculateHeight()
         {
             return AboveSurface + Floors.Sum(item => item.calculateHeight());
         }
 
-        public float calculateSurface()
+        public decimal calculateSurface()
         {
             return Floors.Sum(item => item.calculateSurface());
         }

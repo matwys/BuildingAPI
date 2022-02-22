@@ -16,13 +16,18 @@ namespace BuildingAPI.Data
         /**
         * method responsible for calculating Height of Building
         *
-        * @return float value of sum of all height of the floors + AboveSurface
+        * @return decimal value of sum of all height of the floors + AboveSurface
         */
         public decimal calculateHeight()
         {
             return AboveSurface + Floors.Sum(item => item.calculateHeight());
         }
 
+        /**
+        * method responsible for calculating Surface of Building
+        *
+        * @return decimal value of sum of all surface of the floors
+        */
         public decimal calculateSurface()
         {
             return Floors.Sum(item => item.calculateSurface());

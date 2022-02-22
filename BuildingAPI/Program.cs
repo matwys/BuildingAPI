@@ -142,4 +142,5 @@ app.MapDelete("/api/buildings/{id}", async (BuildingsService buildingService, st
 
     return Results.NoContent();
 });
+
 app.Run();

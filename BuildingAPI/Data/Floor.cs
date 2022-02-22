@@ -11,13 +11,17 @@ namespace BuildingAPI.Data
         /**
         * method responsible for calculating Height of Floor
         *
-        * @return float value of max of all height of the rooms + HseightOfCeiling
+        * @return decimal value of max of all height of the rooms + HseightOfCeiling
         */
         public decimal calculateHeight()
         {
             return HeightOfCeiling + Rooms.Max(item => item.calculateHeight());
         }
-
+        /**
+        * method responsible for calculating Surface of Floor
+        *
+        * @return decimal value of sum of all surface of the rooms
+        */
         public decimal calculateSurface()
         {
             return Rooms.Sum(item => item.calculateSurface());

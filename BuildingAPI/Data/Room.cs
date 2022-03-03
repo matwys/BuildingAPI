@@ -1,6 +1,6 @@
 ﻿namespace BuildingAPI.Data
 {
-    public class Room
+    public class Room : IBuildingMethods
     {
         public int Number { get; set; }
         public decimal Height { get; set; }

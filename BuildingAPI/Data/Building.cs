@@ -2,7 +2,7 @@
 
 namespace BuildingAPI.Data
 {
-    public class Building
+    public class Building : IBuildingMethods
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]

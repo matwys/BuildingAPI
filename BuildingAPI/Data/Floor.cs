@@ -2,7 +2,7 @@
 
 namespace BuildingAPI.Data
 {
-    public class Floor
+    public class Floor : IBuildingMethods
     {
         public int Number { get; set; }
         public decimal HeightOfCeiling { get; set; }
